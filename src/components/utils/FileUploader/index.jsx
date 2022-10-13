@@ -15,12 +15,12 @@ class FileUploader extends Component {
     onFileUpload = () => {
         const formData = new FormData()
         formData.append(
-            "image",
+            "img_file",
             this.state.selectedFile,
             this.state.selectedFile.name
         )
         console.log(this.state.selectedFile)
-        axios.post("https://6cc1-179-108-16-119.ngrok.io/resnet50/eval", formData)
+        axios.post("http://localhost:8000/resnet50/eval", formData)
     }
 
     fileData = () => {
