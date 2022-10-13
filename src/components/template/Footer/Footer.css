@@ -1,0 +1,9 @@
+.footer {
+    grid-area: footer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 5px;
+    background-color: #f8f9fa;
+    box-shadow: 30px 20px 25px black;
+}
