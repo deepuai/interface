@@ -1,0 +1,10 @@
+.header {
+    grid-area: header;
+}
+.nav-item {
+    margin: 0 10px;
+}
+.navbar-light .navbar-brand {
+    color: grey;
+    
+}

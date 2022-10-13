@@ -1,0 +1,14 @@
+.file-uploader {
+    max-width: 30vw;
+}
+
+.file-uploader .form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.file-uploader .form ,btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

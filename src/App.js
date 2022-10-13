@@ -1,9 +1,17 @@
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
+import Content from './components/template/Content';
+import Footer from './components/template/Footer';
+import Header from './components/template/Header';
 
 function App() {
   return (
     <div className="App">
-      <h1>Aplicação Inicial</h1>
+      <BrowserRouter>
+        <Header />
+        <Content />
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }
