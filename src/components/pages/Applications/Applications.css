@@ -1,4 +1,16 @@
 .page-applications {
     display: flex;
+    flex-direction: column;
+}
+
+.page-applications .applications {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+}
+
+.page-applications .applications
+.card-application {
+    margin: 10px;
 }

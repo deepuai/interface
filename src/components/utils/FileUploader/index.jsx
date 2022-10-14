@@ -39,10 +39,8 @@ class FileUploader extends Component {
             )
         } else {
             return (
-                <div>
-                    <br />
-                    <h4>Selecione um arquivo antes de clicar Upload</h4>
-                </div>
+                <>
+                </>
             )
         }
     }

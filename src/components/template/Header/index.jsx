@@ -13,7 +13,7 @@ const Header = () => {
           <Container>
             <Col>
               <Navbar.Brand as={Link} to="/">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/EFEI_logo.png/640px-EFEI_logo.png" width="33" height="33" class="d-inline-block align-top me-2" alt=""/>
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/EFEI_logo.png/640px-EFEI_logo.png" width="33" height="33" className="d-inline-block align-top me-2" alt=""/>
                    DeepUAI: Aplicações de Redes Neurais
               </Navbar.Brand>
             </Col>

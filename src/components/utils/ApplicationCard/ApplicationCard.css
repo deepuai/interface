@@ -1,0 +1,130 @@
+.card-application {
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.25);
+}
+
+.card-application .card-header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+}
+
+.card-application .card-header
+.title,
+.card-application .card-header
+.subtitle {
+    margin: 0;
+}
+
+.card-application .card-header
+.title {
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.card-application .card-body {
+    display: flex;
+    position: relative;
+}
+
+.card-application .card-body 
+.dataset,
+.card-application .card-body
+.neural-network {
+    padding: 40px;
+}
+
+.card-application .card-body 
+.dataset-title,
+.card-application .neural-network
+.title {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.card-application .card-body 
+.dataset-body {
+    padding: 20px 30px;
+    border-color: black;
+    background-color: rgba(153, 229, 156, 0.6);
+    border-radius: 20px;
+    box-shadow: 0px 5px 5px 2px rgba(0, 0, 0, 0.5);
+}
+
+.card-application .card-body 
+.dataset-body .dataset-name {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.card-application .dataset-body
+.dataset-imgs {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 8px;
+}
+
+.card-application .dataset-body
+.dataset-imgs img {
+    width: 110px;
+    height: 90px;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    box-shadow: 5px 5px 4px 1px rgba(0, 0, 0, 0.25);
+}
+
+.card-application .dataset-body
+.dataset-infos {
+    display: flex;
+    justify-content: space-around;
+    padding: 25px 60px 20px 60px;
+}
+
+.card-application .neural-network
+.neural-network-infos {
+    padding: 20px 30px;
+    border-color: black;
+    background-color: rgba(51, 78, 134, 0.42);
+    border-radius: 20px;
+    box-shadow: 0px 5px 5px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+}
+
+.card-application .neural-network
+.neural-network-name {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.card-application .neural-network
+.neural-network-config {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.card-application .neural-network
+.neural-network-metrics-imgs > div {
+    display: flex;
+    margin: 8px;
+}
+
+.card-application .card-footer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 0px 15px 0px;
+}
+
+.card-application .card-footer
+button {
+    margin: 0px 10px;
+}
