@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
+import Button from '../Button'
 import './ApplicationCard.css'
 
 class ApplicationCard extends React.Component {
@@ -55,7 +55,7 @@ class ApplicationCard extends React.Component {
             <div className='card-application'>
                 <div className='card-header'>
                     <h3 className="title">{ this.name }</h3>
-                    <h6 className="subtitle text-muted">VERSION: { this.version }</h6>
+                    <h6 className="subtitle text-muted">VERSÃO: { this.version }</h6>
                 </div>
                 <div className='card-body'>
                     <div className='dataset'>
@@ -63,7 +63,7 @@ class ApplicationCard extends React.Component {
                         <div className='dataset-body'>
                             <h5 className='dataset-name'>Imagens Aleatórias da Internet</h5>
                             <div className='dataset-imgs'>
-                                {this.state.imgURIs.map(imgURI => <img src={imgURI} alt='Exemplo de input utilizado no aprendizado da rede' /> )}
+                                {this.state.imgURIs.map(imgURI => <img src={imgURI} alt='Exemplo de input utilizado no aprendizado da rede' key={imgURI}/> )}
                             </div>
                             <div className='dataset-infos'>
                                 <div>
@@ -124,8 +124,8 @@ class ApplicationCard extends React.Component {
                     </div>
                 </div>
                 <div className='card-footer'>
-                    <Button variant="outline-secondary" size="lg" onClick={this.callbackPredict}>Classificar</Button>
-                    <Button variant="outline-secondary" size="lg" onClick={this.callbackFit}>Treinar</Button>
+                    <Button onClick={this.callbackPredict} iconURI='/assets/icons/predict.png'>Classificar</Button>
+                    <Button onClick={this.callbackFit} iconURI='/assets/icons/train.png'>Treinar</Button>
                 </div>
             </div>
         )
