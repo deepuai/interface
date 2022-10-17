@@ -1,35 +1,34 @@
 import './Footer.css'
-import { CDBFooter, CDBBox, CDBBtn, CDBIcon } from 'cdbreact';
 
 const Footer = () => {
     return (
-        <CDBFooter className="shadow">
-            <CDBBox
-                display="flex"
-                justifyContent="between"
-                alignItems="center"
-                className="mx-auto py-4"
-                style={{ height: '100%' }}
-            >
-                <CDBBox display="flex" alignItems="center">
-                <a href="/" className="d-flex align-items-center p-0 text-dark">
-                    <img
-                        alt="logo"
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/EFEI_logo.png/640px-EFEI_logo.png"
-                        width="40px"
-                        className="ms-2"
-                    />
-                    <span className="ms-3 h5 mb-0 font-weight-bold">DeepUAI</span>
-                </a>
-                <small className="ms-5">&copy; DeepUAI, 2022. All rights reserved.</small>
-                </CDBBox>
-                <CDBBox display="flex">
-                <CDBBtn href="https://github.com/deeplearnas" flat color="dark" className="p-3 me-4">
-                    <CDBIcon fab icon="github" />
-                </CDBBtn>
-                </CDBBox>
-            </CDBBox>
-    </CDBFooter>
+        <footer className="text-center text-black footer" style={{ backgroundColor: "#f1f1f1" }}>
+            <div className="container pt-2">
+                <section>
+                    <a
+                        className="btn text-white btn-floating"
+                        href="https://github.com/deeplearnas"
+                        role="button"
+                    >
+                        <img
+                            alt="logo_github"
+                            src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+                            width="50px"
+                        />
+                        <div className="text-dark">Acesse nosso GitHub!</div>
+                    </a>
+                </section>
+
+            </div>
+            <div className="text-center text-dark p-1">
+                <img
+                    alt="logo"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/EFEI_logo.png/640px-EFEI_logo.png"
+                    width="40px"
+                />
+                <a className="text-dark ms-2" href="https://unifei.edu.br/">Universidade Federal de Itajubá</a>
+            </div>
+        </footer>
     );
 }
 

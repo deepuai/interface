@@ -40,8 +40,8 @@ const Header = () => {
                     </NavDropdown>
 
                     <NavDropdown title="Outros" id="basic-nav-dropdown">
-                      <NavDropdown.Item as={Link} to="/">Dados Próprios</NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to="/">Dados da Comunidade</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/">Sobre</NavDropdown.Item>
+                      <NavDropdown.Item href="https://github.com/deeplearnas">Repositório GitHub</NavDropdown.Item>
                     </NavDropdown>
 
                   </Nav>
