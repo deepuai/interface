@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '../Button'
+import TooltipButton from '../TooltipButton'
 import './ApplicationCard.css'
 
 class ApplicationCard extends React.Component {
@@ -119,13 +119,13 @@ class ApplicationCard extends React.Component {
                                         </div>
                                     </div>
                                 </div>
+                                <div className='buttons'>
+                                    <TooltipButton onClick={this.callbackPredict} iconURI='/assets/icons/predict.png' tooltipText='Classificar' />
+                                    <TooltipButton onClick={this.callbackFit} iconURI='/assets/icons/train.png' tooltipText='Treinar' />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className='card-footer'>
-                    <Button onClick={this.callbackPredict} iconURI='/assets/icons/predict.png'>Classificar</Button>
-                    <Button onClick={this.callbackFit} iconURI='/assets/icons/train.png'>Treinar</Button>
                 </div>
             </div>
         )

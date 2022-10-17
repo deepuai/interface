@@ -29,6 +29,7 @@
 .card-application .card-body {
     display: flex;
     position: relative;
+    padding-bottom: 20px;
 }
 
 .card-application .card-body 
@@ -111,20 +112,28 @@
 }
 
 .card-application .neural-network
+.neural-network-metrics {
+    position: relative;
+}
+
+.card-application .neural-network
 .neural-network-metrics-imgs > div {
     display: flex;
     margin: 8px;
 }
 
-.card-application .card-footer {
-    position: relative;
+.card-application .neural-network
+.neural-network-metrics .buttons {
+    position: absolute;
+    min-width: 25%;
+    max-width: 25%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0px 0px 15px 0px;
+    justify-content: space-between;
 }
 
-.card-application .card-footer
-button {
-    margin: 0px 10px;
+@media (max-width: 600px)
+{
+   .card-application .card-body .dataset {
+        display: none;
+   }
 }

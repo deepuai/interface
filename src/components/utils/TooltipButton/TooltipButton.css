@@ -1,0 +1,43 @@
+.deepuai-tooltip-button {
+    position: relative;
+    background-color: transparent;
+    border-radius: 20px;
+    padding: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.deepuai-tooltip-button img {
+    height: 40px;
+    width: 40px;
+}
+
+.deepuai-tooltip-button .tooltiptext {
+    position: absolute;
+    z-index: 1;  
+    visibility: hidden;
+    font-size: 1.2rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 6px;
+    width: 120px;
+    bottom: 115%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.deepuai-tooltip-button:hover .tooltiptext {
+    visibility: visible;
+}
+
+.deepuai-tooltip-button .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+  }
