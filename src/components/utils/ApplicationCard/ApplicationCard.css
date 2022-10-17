@@ -131,9 +131,30 @@
     justify-content: space-between;
 }
 
-@media (max-width: 600px)
-{
+@media (max-width: 600px) {
+    .card-application .card-body {
+     padding-bottom: 50px;
+   }
+
    .card-application .card-body .dataset {
         display: none;
    }
+
+   .card-application .card-body .neural-network {
+    padding: 10px;
+  }
+
+  .card-application .neural-network
+  .neural-network-config {
+    flex-direction: column;
+  }
+
+  .card-application .neural-network
+  .neural-network-metrics .buttons {
+      position: absolute;
+      min-width: 100%;
+      max-width: 100%;
+      display: flex;
+      justify-content: space-between;
+  }
 }

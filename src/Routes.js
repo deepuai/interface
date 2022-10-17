@@ -6,7 +6,7 @@ const Routes = () => {
     return (
         <ReactRouters>
             <Route element={ <Home /> } path="/" exact />
-            <Route element={ <Applications /> } path="/applications" exact />
+            <Route element={ <Applications /> } path="/community/applications" exact />
         </ReactRouters>
     )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import ApplicationCard from '../../utils/ApplicationCard'
-import FileUploader from '../../utils/FileUploader'
+import Predict from '../../utils/Predict'
 import './Applications.css'
 
 class Applications extends React.Component {
@@ -29,19 +29,21 @@ class Applications extends React.Component {
         }
     }
 
-    showFitComponent() {
+    showFitComponent(application) {
         this.setState({ 
             ...this.state,
             isFitComponentVisible: true,
-            isPredictComponentVisible: false
+            isPredictComponentVisible: false,
+            applicationSelected: application
         })
     }
 
-    showPredictComponent() {
+    showPredictComponent(application) {
         this.setState({ 
             ...this.state,
             isFitComponentVisible: false,
-            isPredictComponentVisible: true
+            isPredictComponentVisible: true,
+            applicationSelected: application
         })
     }
 
@@ -49,7 +51,8 @@ class Applications extends React.Component {
         this.setState({ 
             ...this.state,
             isFitComponentVisible: false,
-            isPredictComponentVisible: false
+            isPredictComponentVisible: false,
+            applicationSelected: null
         })
     }
 
@@ -61,8 +64,8 @@ class Applications extends React.Component {
                         <ApplicationCard 
                             key={id}
                             applicationInfo={application}
-                            callbackFit={() => this.showFitComponent()}
-                            callbackPredict={() => this.showPredictComponent()}/>
+                            callbackFit={() => this.showFitComponent(application)}
+                            callbackPredict={() => this.showPredictComponent(application)}/>
                     )}
                 </section>
                 <Modal
@@ -73,11 +76,11 @@ class Applications extends React.Component {
                     onHide={() => this.hideDialog()}>
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
-                            Classificação de Imagem na Aplicação Selecionada
+                            Classificação de Imagens
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <FileUploader />
+                        <Predict application={this.state.applicationSelected}/>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="outline-secondary" onClick={() => this.hideDialog()}>Fechar</Button>

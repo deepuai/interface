@@ -14,7 +14,7 @@ const Home = () => {
                     <Card.Text>
                         Na DeepUai você têm a possibilidade de treinar e utilizar redes neurais de uma forma fácil e rápida!
                     </Card.Text>
-                    <Button as={Link} variant="outline-dark" to="/applications" >Clique aqui para começar </Button>
+                    <Button as={Link} variant="outline-dark" to="/community/applications" >Clique aqui para começar </Button>
                 </Card.Body>
             </Card>
         </div>

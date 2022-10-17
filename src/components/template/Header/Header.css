@@ -1,10 +1,29 @@
 .header {
     grid-area: header;
+    max-width: 100vw;
 }
+
+.header .row {
+    width: 100vw;
+    align-items: center;
+}
+
+.header .row .col:nth-child(2){
+    text-align: end;
+}
+
 .nav-item {
     margin: 0 10px;
 }
 .navbar-light .navbar-brand {
     color: grey;
     
+}
+
+@media (max-width: 600px) {
+
+    .header .title-lg {
+        display: none;
+    }
+
 }
