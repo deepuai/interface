@@ -75,7 +75,7 @@ class Applications extends React.Component {
                     show={this.state.isPredictComponentVisible}
                     onHide={() => this.hideDialog()}>
                     <Modal.Header closeButton>
-                        <Modal.Title id="contained-modal-title-vcenter">
+                        <Modal.Title id="contained-modal-title-vcenter" style={{fontSize: '1.2rem'}}>
                             Classificação de Imagens
                         </Modal.Title>
                     </Modal.Header>

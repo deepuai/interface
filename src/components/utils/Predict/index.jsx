@@ -18,7 +18,7 @@ const CHART_OPTIONS = {
             labels: { 
                 padding: 20,
                 boxWidth: 50,
-                font: { size: 18}
+                font: { size: 12}
             }
         },
         tooltip: {
@@ -27,8 +27,8 @@ const CHART_OPTIONS = {
             borderWidth: 0.5,
             titleFontSize: 16,
             bodyColor: 'black',
-            bodyFont: { size: 16 },
-            bodyFontSize: 14,
+            bodyFont: { size: 12 },
+            bodyFontSize: 12,
             displayColors: false,
             callbacks: {
                 label: context => {
@@ -69,9 +69,9 @@ class Predict extends React.Component {
         this.state = {
             chart: {
                 data: {
-                    labels: ['Null'],
+                    labels: ['Null', 'Null', 'Null'],
                     datasets: [{ 
-                        data: [1] ,
+                        data: [1, 2, 3] ,
                         ...DATASET_OPTIONS
                     }]
                 },

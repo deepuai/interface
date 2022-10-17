@@ -32,7 +32,7 @@
     padding-bottom: 20px;
 }
 
-.card-application .card-body 
+.card-application .card-body
 .dataset,
 .card-application .card-body
 .neural-network {
@@ -44,13 +44,13 @@
 .card-application .neural-network
 .title {
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-bottom: 20px;
 }
 
 .card-application .card-body 
 .dataset-body {
-    padding: 20px 30px;
+    padding: 10px 15px;
     border-color: black;
     background-color: rgba(153, 229, 156, 0.6);
     border-radius: 20px;
@@ -61,7 +61,7 @@
 .dataset-body .dataset-name {
     text-align: center;
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-bottom: 15px;
 }
 
@@ -74,8 +74,8 @@
 
 .card-application .dataset-body
 .dataset-imgs img {
-    width: 110px;
-    height: 90px;
+    width: 70px;
+    height: 50px;
     border: 2px solid rgba(0, 0, 0, 0.4);
     box-shadow: 5px 5px 4px 1px rgba(0, 0, 0, 0.25);
 }
@@ -85,6 +85,15 @@
     display: flex;
     justify-content: space-around;
     padding: 25px 60px 20px 60px;
+}
+
+.card-application .dataset-body
+.dataset-infos,
+.card-application .neural-network
+.neural-network-config,
+.card-application
+.neural-network-metrics-imgs {
+    font-size: 0.9rem;
 }
 
 .card-application .neural-network
@@ -100,7 +109,7 @@
 .card-application .neural-network
 .neural-network-name {
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-bottom: 15px;
 }
 
@@ -119,7 +128,7 @@
 .card-application .neural-network
 .neural-network-metrics-imgs > div {
     display: flex;
-    margin: 8px;
+    margin-bottom: 10px;
 }
 
 .card-application .neural-network

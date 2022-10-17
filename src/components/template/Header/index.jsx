@@ -9,7 +9,7 @@ import { Col, Row } from 'react-bootstrap';
 const Header = () => {
     return (
       <header className='header'>
-        <Navbar bg="light" expand="lg" style={{ fontSize: '20px' }}>
+        <Navbar bg="light" expand="lg" style={{ fontSize: '15px' }}>
           <Container>
             <Row>
               <Col>

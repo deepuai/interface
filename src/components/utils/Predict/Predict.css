@@ -6,7 +6,7 @@
 }
 
 .predict-component .doughnut-chart {
-    margin-top: 30px;
-    max-width: 400px;
-    max-height: 400px;
+    margin-top: 5px;
+    max-width: 350px;
+    max-height: 350px;
 }
