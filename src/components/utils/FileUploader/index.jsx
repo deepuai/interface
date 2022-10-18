@@ -40,7 +40,7 @@ class FileUploader extends Component {
             loadingActivated: true,
             fileHasChanged: false
         })
-        axios.post(`http://localhost:8000/${this.pathParam}/eval`, formData)
+        axios.post(`http://localhost:8000/${this.pathParam}`, formData)
             .then(response => {
                 this.setState({
                     ...this.state,
@@ -48,7 +48,13 @@ class FileUploader extends Component {
                 })
                 return this.cbAfterRequest(response)
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                this.setState({
+                    ...this.state,
+                    loadingActivated: false
+                })
+            })
     }
 
     render() {

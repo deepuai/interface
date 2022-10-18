@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import { Button, Modal } from 'react-bootstrap'
 import ApplicationCard from '../../utils/ApplicationCard'
 import Predict from '../../utils/Predict'
@@ -9,24 +10,22 @@ class Applications extends React.Component {
     constructor() {
         // request para a API para listar aplicações disponíveis
         super()
-        const resnet50 = {
-            name: 'ResNet50',
-            version: 'ImageNet',
-            applicationAccuracy: 100,
-            applicationNumberOfAccesses: '3.8 mil',
-            datasetSize: '2.1 GB',
-            datasetNumberOfImgs: 1024,
-            datasetNumberOfClasses: 28,
-            modelName: 'ResNet50',
-            modelNumberOfParams: '25.6M',
-            modelNumberOfLayers: 28,
-            modelSize: '88 MB'
-        }
         this.state = {
-            applications: [resnet50, resnet50, resnet50, resnet50, resnet50, resnet50],
+            applications: [],
             isFitComponentVisible: false,
             isPredictComponentVisible: false
         }
+    }
+
+    componentDidMount() {
+        axios.get(`http://localhost:8000/applications`)
+            .then(response => {
+                this.setState({
+                    ...this.state,
+                    applications: [...response.data]
+                })
+            })
+            .catch(error => console.log(error))
     }
 
     showFitComponent(application) {

@@ -65,7 +65,6 @@ class Predict extends React.Component {
 
     constructor({ application }) {
         super()
-        this.application = application
         this.state = {
             chart: {
                 data: {
@@ -77,7 +76,8 @@ class Predict extends React.Component {
                 },
                 options: {...CHART_OPTIONS}
             },
-            showChart: false
+            showChart: false,
+            pathParams: `${application.name.toLowerCase()}/${application.datasetName.toLowerCase()}/eval`
         }
     }
 
@@ -111,7 +111,7 @@ class Predict extends React.Component {
         return (
             <div className='predict-component'>
                 <FileUploader 
-                    pathParam={this.application.name.toLowerCase()}
+                    pathParam={this.state.pathParams}
                     cbAfterFileHasChanged={() => this.hideChart()}
                     cbAfterRequest={(response) => this.setChartDataAfterRequest(response)}
                     />

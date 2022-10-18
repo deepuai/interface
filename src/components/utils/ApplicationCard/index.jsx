@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import TooltipButton from '../TooltipButton'
 import './ApplicationCard.css'
 
@@ -9,6 +10,7 @@ class ApplicationCard extends React.Component {
         this.name = applicationInfo.name
         this.version = applicationInfo.version
         this.datasetNumberOfImgs = applicationInfo.datasetNumberOfImgs
+        this.datasetName = applicationInfo.datasetName
         this.datasetSize = applicationInfo.datasetSize
         this.datasetNumberOfClasses = applicationInfo.datasetNumberOfClasses
         this.modelName = applicationInfo.modelName
@@ -31,22 +33,18 @@ class ApplicationCard extends React.Component {
     }
 
     loadSomeImgsUsedToFit() {
-        // request para API para pegar pequeno conjunto de imagens utilizados na aplicação
-        this.setState({
-            imgURIs: [
-                'https://cdn.pixabay.com/photo/2016/03/27/22/22/fox-1284512_960_720.jpg',
-                'https://cdn.pixabay.com/photo/2017/02/20/18/03/cat-2083492_960_720.jpg',
-                'https://cdn.pixabay.com/photo/2017/02/07/16/47/kingfisher-2046453_960_720.jpg',
-                'https://cdn.pixabay.com/photo/2018/07/31/22/08/lion-3576045_960_720.jpg',
-                'https://cdn.pixabay.com/photo/2017/09/25/13/12/cocker-spaniel-2785074_960_720.jpg',
-                'https://cdn.pixabay.com/photo/2016/12/31/21/22/discus-fish-1943755_960_720.jpg',
-                'https://cdn.pixabay.com/photo/2018/03/31/06/31/dog-3277416_960_720.jpg',
-                'https://cdn.pixabay.com/photo/2019/08/19/07/45/corgi-4415649_960_720.jpg',
-                'https://cdn.pixabay.com/photo/2016/12/04/21/58/rabbit-1882699_960_720.jpg',
-                'https://cdn.pixabay.com/photo/2016/10/31/14/55/rottweiler-1785760_960_720.jpg',
-                'https://cdn.pixabay.com/photo/2017/02/18/13/55/swan-2077219_960_720.jpg',
-                'https://cdn.pixabay.com/photo/2016/07/15/15/55/dachshund-1519374_960_720.jpg'
-        ]})
+        const params = {
+                'application': this.name,
+                'datasetName': this.datasetName
+        }
+        axios.get(`http://localhost:8000/dataset`, { params: params })
+            .then(response => {
+                this.setState({
+                    ...this.state,
+                    imgURIs: [...response.data.datasetImagens]
+                })
+            })
+            .catch(error => console.log(error))
     }
 
     render() {
