@@ -27,3 +27,15 @@
     }
 
 }
+
+#nav-dropdown{
+    color: grey;
+    margin: 0px 2px;
+    font-size: medium;
+}
+
+#nav-link{
+    color: grey;
+    margin: 0 10px;
+    font-size: medium;
+}
