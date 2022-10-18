@@ -2,7 +2,7 @@ import './FileUploader.css'
 
 import axios from 'axios'
 import { Component } from "react"
-import { Button, Spinner } from 'react-bootstrap';
+import { Button, OverlayTrigger, Spinner, Tooltip } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 
 class FileUploader extends Component {
@@ -12,8 +12,11 @@ class FileUploader extends Component {
         loadingActivated: false
     }
 
-    constructor({ pathParam, cbAfterFileHasChanged, cbAfterRequest }) {
+    constructor({ label, tooltipInfo, fileType, pathParam, cbAfterFileHasChanged, cbAfterRequest }) {
         super()
+        this.label = label
+        this.tooltipInfo = tooltipInfo
+        this.fileType = fileType
         this.pathParam = pathParam
         this.cbAfterRequest = cbAfterRequest
         this.cbAfterFileHasChanged = cbAfterFileHasChanged
@@ -31,7 +34,7 @@ class FileUploader extends Component {
     onFileUpload = () => {
         const formData = new FormData()
         formData.append(
-            "img_file",
+            this.fileType,
             this.state.selectedFile,
             this.state.selectedFile.name
         )
@@ -57,12 +60,34 @@ class FileUploader extends Component {
             })
     }
 
+    renderTooltip(props) {
+        return (
+            <Tooltip id="button-tooltip" {...props} hidden={!this.tooltipInfo}>
+                {this.tooltipInfo}
+            </Tooltip>
+        )
+    }
+
     render() {
         return (
             <div className='file-uploader'>
                 <div className='form'>
                     <Form.Group controlId="formFile" className="mb-2">
-                        <Form.Label>Envie uma imagem para o modelo realizar a predição</Form.Label>
+                        <Form.Label>
+                            {this.label}
+                            <OverlayTrigger
+                                placement="right"
+                                delay={{ show: 250, hide: 400 }}
+                                overlay={(props) => this.renderTooltip(props)}
+                                hidden={this.tooltipInfo}
+                            >
+                                <img
+                                    src='/assets/icons/info.png'
+                                    alt='info'
+                                    style={{height: '25px', width: '25px', marginLeft: '10px'}}
+                                    hidden={!this.tooltipInfo}/>
+                            </OverlayTrigger>
+                        </Form.Label>
                         <Form.Control type="file" onChange={this.onFileChange}/>
                     </Form.Group>
                     <div className='btn'>
@@ -80,7 +105,7 @@ class FileUploader extends Component {
                         <span className="visually-hidden">Loading...</span>
                     </Spinner>
                     <span>
-                        A rede neural está processando a imagem enviada, por favor aguarde! 
+                        A rede neural está processando as informações enviadas, por favor aguarde! 
                     </span>
                 </div>
             </div>

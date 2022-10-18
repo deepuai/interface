@@ -65,6 +65,7 @@ class Predict extends React.Component {
 
     constructor({ application }) {
         super()
+        this.labelFileUploader = 'Envie uma imagem para o modelo realizar a predição.'
         this.state = {
             chart: {
                 data: {
@@ -111,6 +112,9 @@ class Predict extends React.Component {
         return (
             <div className='predict-component'>
                 <FileUploader 
+                    label={this.labelFileUploader}
+                    tooltipInfo={false}
+                    fileType='img_file'
                     pathParam={this.state.pathParams}
                     cbAfterFileHasChanged={() => this.hideChart()}
                     cbAfterRequest={(response) => this.setChartDataAfterRequest(response)}

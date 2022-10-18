@@ -4,6 +4,7 @@ import { Button, Modal } from 'react-bootstrap'
 import ApplicationCard from '../../utils/ApplicationCard'
 import Predict from '../../utils/Predict'
 import './Applications.css'
+import Fit from '../../utils/Fit'
 
 class Applications extends React.Component {
 
@@ -80,6 +81,24 @@ class Applications extends React.Component {
                     </Modal.Header>
                     <Modal.Body>
                         <Predict application={this.state.applicationSelected}/>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="outline-secondary" onClick={() => this.hideDialog()}>Fechar</Button>
+                    </Modal.Footer>
+                </Modal>
+                <Modal
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                    show={this.state.isFitComponentVisible}
+                    onHide={() => this.hideDialog()}>
+                    <Modal.Header closeButton>
+                        <Modal.Title id="contained-modal-title-vcenter" style={{fontSize: '1.2rem'}}>
+                            Treinamento da Rede
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Fit application={this.state.applicationSelected}/>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="outline-secondary" onClick={() => this.hideDialog()}>Fechar</Button>
