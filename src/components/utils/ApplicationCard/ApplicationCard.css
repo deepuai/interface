@@ -131,13 +131,12 @@
     margin-bottom: 10px;
 }
 
-.card-application .neural-network
-.neural-network-metrics .buttons {
-    position: absolute;
-    min-width: 25%;
-    max-width: 25%;
+.card-application .buttons {
+    max-width: 30%;
+    margin-left: 35%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    margin-bottom: 20px;
 }
 
 @media (max-width: 600px) {
@@ -158,12 +157,8 @@
     flex-direction: column;
   }
 
-  .card-application .neural-network
-  .neural-network-metrics .buttons {
-      position: absolute;
-      min-width: 100%;
+  .card-application .buttons {
       max-width: 100%;
-      display: flex;
-      justify-content: space-between;
+      margin-left: 0;
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
-import TooltipButton from '../TooltipButton'
 import './ApplicationCard.css'
+import { Button } from 'react-bootstrap'
 
 class ApplicationCard extends React.Component {
 
@@ -117,13 +117,13 @@ class ApplicationCard extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='buttons'>
-                                    <TooltipButton onClick={this.callbackPredict} iconURI='/assets/icons/predict.png' tooltipText='Classificar' />
-                                    <TooltipButton onClick={this.callbackFit} iconURI='/assets/icons/train.png' tooltipText='Treinar' />
-                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className='buttons'>
+                    <Button variant="outline-secondary" onClick={this.callbackPredict}>Classificar</Button>
+                    <Button variant="outline-secondary" onClick={this.callbackFit}>Treinar</Button>
                 </div>
             </div>
         )
