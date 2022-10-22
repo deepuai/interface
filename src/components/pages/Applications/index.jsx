@@ -9,7 +9,6 @@ import Fit from '../../utils/Fit'
 class Applications extends React.Component {
 
     constructor() {
-        // request para a API para listar aplicações disponíveis
         super()
         this.state = {
             applications: [],
@@ -98,7 +97,7 @@ class Applications extends React.Component {
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Fit application={this.state.applicationSelected}/>
+                        <Fit modelOrApplication={this.state.applicationSelected}/>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="outline-secondary" onClick={() => this.hideDialog()}>Fechar</Button>

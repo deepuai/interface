@@ -24,15 +24,18 @@ const Header = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="me-auto">
 
-                    <Nav.Link id="nav-link" as={Link} to="/">Dados</Nav.Link>
+                    <Nav.Link id="nav-link" as={Link} to="/community/data">Dados</Nav.Link>
 
-                    <Nav.Link id="nav-link" as={Link} to="/">Modelos</Nav.Link>
+                    <Nav.Link id="nav-link" as={Link} to="/community/models">Modelos</Nav.Link>
 
-                    <Nav.Link id="nav-link" as={Link} to="/community/applications">Aplicações</Nav.Link>
+                    <NavDropdown title="Aplicações" id="nav-dropdown">
+                      <NavDropdown.Item as={Link} to="/community/applications">Disponíveis</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/community/applications/queue">Na fila</NavDropdown.Item>
+                    </NavDropdown>
 
                     <NavDropdown title="Outros" id="nav-dropdown">
-                      <NavDropdown.Item as={Link} to="/">Sobre</NavDropdown.Item>
-                      <NavDropdown.Item href="https://github.com/deeplearnas">Repositório GitHub</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/about">Sobre</NavDropdown.Item>
+                      <NavDropdown.Item href="https://github.com/deeplearnas" target="_blank">Repositório GitHub</NavDropdown.Item>
                     </NavDropdown>
 
                   </Nav>

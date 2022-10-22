@@ -1,0 +1,24 @@
+.page-models {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.page-models .models {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.page-models .models
+.card-model {
+    margin: 10px;
+}
+
+@media (max-width: 600px) {
+
+    .page-models .models {
+        display: grid;
+        grid-template-columns: auto;
+    }
+
+}

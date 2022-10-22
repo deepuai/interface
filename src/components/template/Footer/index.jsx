@@ -8,6 +8,8 @@ const Footer = () => {
                     <a
                         className="btn text-white btn-floating"
                         href="https://github.com/deeplearnas"
+                        target="_blank"
+                        rel="noreferrer"
                         role="button"
                     >
                         <img
@@ -26,7 +28,7 @@ const Footer = () => {
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/EFEI_logo.png/640px-EFEI_logo.png"
                     width="40px"
                 />
-                <a className="text-dark ms-2" href="https://unifei.edu.br/">Universidade Federal de Itajubá</a>
+                <a className="text-dark ms-2" href="https://unifei.edu.br/" target="_blank" rel="noreferrer">Universidade Federal de Itajubá</a>
             </div>
         </footer>
     );

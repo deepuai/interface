@@ -1,6 +1,7 @@
 .page-applications {
     display: flex;
     flex-direction: column;
+    padding: 10px;
 }
 
 .page-applications .applications {
