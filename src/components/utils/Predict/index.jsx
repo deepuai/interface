@@ -1,9 +1,12 @@
 import './Predict.css'
 
+import axios from 'axios'
 import React from 'react'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import FileUploader from '../../utils/FileUploader'
+import { Button, Form, Spinner } from 'react-bootstrap';
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const CHART_OPTIONS = {
@@ -66,6 +69,8 @@ class Predict extends React.Component {
     constructor({ application }) {
         super()
         this.labelFileUploader = 'Envie uma imagem para o modelo realizar a predição.'
+        this.pathParams = `${application.name.toLowerCase()}/${application.datasetName.toLowerCase()}/eval`
+
         this.state = {
             chart: {
                 data: {
@@ -78,8 +83,55 @@ class Predict extends React.Component {
                 options: {...CHART_OPTIONS}
             },
             showChart: false,
-            pathParams: `${application.name.toLowerCase()}/${application.datasetName.toLowerCase()}/eval`
+            loadingActivated: false,
+            form: {
+                file: {
+                    type: 'img_file',
+                    selected: null
+                },
+            },
+            formHasChanged: false
         }
+    }
+
+    onChangeUploadFile = event => {
+        this.setState({ 
+            ...this.state,
+            form: {
+                file: {
+                    type: 'img_file',
+                    selected: event.target.files[0]
+                },
+            },
+            formHasChanged: true,
+            showChart: false
+        })
+    }
+
+    uploadFile = event => {
+        event.preventDefault()
+        const formData = new FormData()
+        formData.append(
+            this.state.form.file.type,
+            this.state.form.file.selected,
+            this.state.form.file.selected.name
+        )
+        this.setState({
+            ...this.state,
+            loadingActivated: true,
+            formHasChanged: false
+        })
+        axios.post(`http://localhost:8000/${this.pathParams}`, formData)
+            .then(response => {
+                this.setChartDataAfterRequest(response)
+            })
+            .catch(error => {
+                console.log(error)
+                this.setState({
+                    ...this.state,
+                    loadingActivated: false
+                })
+            })
     }
 
     hideChart() {
@@ -104,21 +156,31 @@ class Predict extends React.Component {
                     }]
                 }
             },
-            showChart: true
+            showChart: true,
+            loadingActivated: false
         })
     }
 
     render() {
         return (
             <div className='predict-component'>
-                <FileUploader 
-                    label={this.labelFileUploader}
-                    tooltipInfo={false}
-                    fileType='img_file'
-                    pathParam={this.state.pathParams}
-                    cbAfterFileHasChanged={() => this.hideChart()}
-                    cbAfterRequest={(response) => this.setChartDataAfterRequest(response)}
-                    />
+                <Form onSubmit={this.uploadFile}>
+                    <FileUploader
+                        label={this.labelFileUploader}
+                        tooltipInfo={false}
+                        cbOnChangeFile={(response) => this.onChangeUploadFile(response)}/>
+                    <Button type="submit" variant="outline-dark">
+                        Enviar
+                    </Button>
+                </Form>
+                <div className='loading' hidden={!this.state.loadingActivated}>
+                    <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                    <span>
+                        A rede neural está processando as informações enviadas, por favor aguarde! 
+                    </span>
+                </div>
                 <Doughnut
                     data={this.state.chart.data}
                     options={this.state.chart.options}

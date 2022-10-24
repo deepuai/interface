@@ -1,0 +1,17 @@
+.fit-component {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fit-component .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fit-component .loading
+span {
+    margin-left: 10px;
+}

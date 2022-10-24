@@ -5,6 +5,29 @@
     align-items: center;
 }
 
+.predict-component form {
+    display: flex;
+    align-items: center;
+
+}
+
+.predict-component form
+button {
+    margin-left: 10px;
+
+}
+
+.predict-component .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.predict-component .loading
+span {
+    margin-left: 10px;
+}
+
 .predict-component .doughnut-chart {
     margin-top: 5px;
     max-width: 350px;
