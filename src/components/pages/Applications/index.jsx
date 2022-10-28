@@ -18,7 +18,7 @@ class Applications extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:8000/applications`)
+        axios.get(`http://localhost:8080/applications/info`)
             .then(response => {
                 this.setState({
                     ...this.state,

@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import { Button, Modal } from 'react-bootstrap'
 import './Models.css'
 import Fit from '../../utils/Fit'
@@ -15,27 +16,14 @@ class Models extends React.Component {
     }
 
     componentDidMount() {
-        const modelExample = {
-            'name': 'ResNet50',
-            'autors': 'Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun',
-            'description': 'Arquitetura de rede neural baseada no framework de aprendizado residual.',
-            'numberOfParams': '50 M',
-            'numberOfLayers': '100',
-            'size': '20 MB',
-            'dateOfCreation': '2015'
-        }
-        this.setState({
-            ...this.state,
-            models: [modelExample, modelExample, modelExample, modelExample, modelExample]
-        })
-        // axios.get(`http://localhost:8000/models`)
-        //     .then(response => {
-        //         this.setState({
-        //             ...this.state,
-        //             models: [...response.data]
-        //         })
-        //     })
-        //     .catch(error => console.log(error))
+        axios.get(`http://localhost:8080/models`)
+            .then(response => {
+                this.setState({
+                    ...this.state,
+                    models: [...response.data]
+                })
+            })
+            .catch(error => console.log(error))
     }
 
     showFitComponent(model) {

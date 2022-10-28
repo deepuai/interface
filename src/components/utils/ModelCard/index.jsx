@@ -6,13 +6,13 @@ class ModelCard extends React.Component {
 
     constructor({ modelInfo, callbackFit }) {
         super()
-        this.name = modelInfo.name
+        this.name = modelInfo.model_name
         this.autors = modelInfo.autors
         this.description = modelInfo.description
-        this.numberOfParams = modelInfo.numberOfParams
-        this.numberOfLayers = modelInfo.numberOfLayers
+        this.numberOfParams = modelInfo.n_params
+        this.numberOfLayers = modelInfo.n_layers
         this.size = modelInfo.size
-        this.dateOfCreation = modelInfo.dateOfCreation
+        this.dateOfCreation = modelInfo.created_on
         
         this.callbackFit = callbackFit
     }

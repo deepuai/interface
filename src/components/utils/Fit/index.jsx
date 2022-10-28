@@ -15,8 +15,8 @@ class Fit extends React.Component {
             img/cachorro/cachorro1.jpg, img/cachorro/cachorro2.jpg,
             img/gato/gato1.jpg, img/gato/gato2.jpg.`
 
-        this.pathParams =  `${modelOrApplication.name.toLowerCase()}
-            ${modelOrApplication.datasetName ? '/' + modelOrApplication.datasetName.toLowerCase() : ''}/fit`
+        this.pathParams =  `${modelOrApplication.model_name.toLowerCase()}
+            ${modelOrApplication.version ? '/' + modelOrApplication.version.toLowerCase() : ''}/fit`
         this.state = {
             form: {
                 file: {
@@ -33,6 +33,7 @@ class Fit extends React.Component {
         this.setState({ 
             ...this.state,
             form: {
+                ...this.state.form,
                 file: {
                     type: 'zip_file',
                     selected: event.target.files[0]

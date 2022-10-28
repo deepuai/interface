@@ -1,50 +1,47 @@
 import React from 'react'
-import axios from 'axios'
 import './ApplicationCard.css'
-import { Button } from 'react-bootstrap'
+import { Button, Modal } from 'react-bootstrap'
+import Version from '../Version'
 
 class ApplicationCard extends React.Component {
 
     constructor({ applicationInfo, callbackPredict, callbackFit }) {
         super()
-        this.name = applicationInfo.name
+        this.applicationId = applicationInfo.application_id
+        this.name = applicationInfo.application_name
         this.version = applicationInfo.version
-        this.datasetNumberOfImgs = applicationInfo.datasetNumberOfImgs
-        this.datasetName = applicationInfo.datasetName
-        this.datasetSize = applicationInfo.datasetSize
-        this.datasetNumberOfClasses = applicationInfo.datasetNumberOfClasses
-        this.modelName = applicationInfo.modelName
-        this.modelNumberOfParams = applicationInfo.modelNumberOfParams
-        this.modelNumberOfLayers = applicationInfo.modelNumberOfLayers
-        this.modelSize = applicationInfo.modelSize
-        this.applicationAccuracy = applicationInfo.applicationAccuracy
-        this.applicationNumberOfAccesses = applicationInfo.applicationNumberOfAccesses
+        this.datasetNumberOfImgs = applicationInfo.n_images
+        this.datasetName = applicationInfo.dataset_name
+        this.datasetSize = applicationInfo.dataset_size
+        this.datasetNumberOfClasses = applicationInfo.n_classes
+        this.modelName = applicationInfo.model_name
+        this.modelNumberOfParams = applicationInfo.n_params
+        this.modelNumberOfLayers = applicationInfo.n_layers
+        this.modelSize = applicationInfo.model_size
+        this.applicationAccuracy = applicationInfo.accuracy
+        this.applicationNumberOfAccesses = applicationInfo.n_accesses
+        this.imgURIs = applicationInfo.images
         
         this.callbackPredict = callbackPredict
         this.callbackFit = callbackFit
-        
+
         this.state = {
-            imgURIs: []
+            isVersionComponentVisible: false
         }
     }
 
-    componentDidMount() {
-        this.loadSomeImgsUsedToFit()
+    showVersionComponent() {
+        this.setState({ 
+            ...this.state,
+            isVersionComponentVisible: true
+        })
     }
 
-    loadSomeImgsUsedToFit() {
-        const params = {
-                'application': this.name,
-                'datasetName': this.datasetName
-        }
-        axios.get(`http://localhost:8000/dataset`, { params: params })
-            .then(response => {
-                this.setState({
-                    ...this.state,
-                    imgURIs: [...response.data.datasetImagens]
-                })
-            })
-            .catch(error => console.log(error))
+    hideDialog() {
+        this.setState({
+            ...this.state,
+            isVersionComponentVisible: false
+        })
     }
 
     render() {
@@ -53,15 +50,15 @@ class ApplicationCard extends React.Component {
             <div className='card-application'>
                 <div className='card-header'>
                     <h3 className="title">{ this.name }</h3>
-                    <h6 className="subtitle text-muted">VERSÃO: { this.version }</h6>
+                    <h6 className="subtitle text-muted" onClick={() => this.showVersionComponent()}>VERSÃO: { this.version }</h6>
                 </div>
                 <div className='card-body'>
                     <div className='dataset'>
                         <h5 className='dataset-title'>Conjunto de Dados</h5>
                         <div className='dataset-body'>
-                            <h5 className='dataset-name'>Imagens Aleatórias da Internet</h5>
+                            <h5 className='dataset-name'> {this.datasetName} </h5>
                             <div className='dataset-imgs'>
-                                {this.state.imgURIs.map(imgURI => <img src={imgURI} alt='Exemplo de input utilizado no aprendizado da rede' key={imgURI}/> )}
+                                {this.imgURIs.map(imgURI => <img src={imgURI} alt='Exemplo de input utilizado no aprendizado da rede' key={imgURI}/> )}
                             </div>
                             <div className='dataset-infos'>
                                 <div>
@@ -113,7 +110,7 @@ class ApplicationCard extends React.Component {
                                         <img src='/assets/icons/people.png' style={{height: '30px', width: '30px', marginRight: '5px'}} alt="hardisk-icon"/> 
                                         <div>
                                             <span>{ this.applicationNumberOfAccesses } acessos da comunidade</span>
-                                            <span style={{display: 'block'}} className="text-muted">3.8 mil usuários utilizaram essa rede para classificar os próprios dados.</span>
+                                            <span style={{display: 'block'}} className="text-muted">{ this.applicationNumberOfAccesses } usuários utilizaram essa rede para classificar os próprios dados.</span>
                                         </div>
                                     </div>
                                 </div>
@@ -125,6 +122,24 @@ class ApplicationCard extends React.Component {
                     <Button variant="outline-secondary" onClick={this.callbackPredict}>Classificar</Button>
                     <Button variant="outline-secondary" onClick={this.callbackFit}>Treinar</Button>
                 </div>
+                <Modal
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                    show={this.state.isVersionComponentVisible}
+                    onHide={() => this.hideDialog()}>
+                    <Modal.Header closeButton>
+                        <Modal.Title id="contained-modal-title-vcenter" style={{fontSize: '1.2rem'}}>
+                            Histórico de Versão da Aplicação {this.name}
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Version applicationId={this.applicationId}/>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="outline-secondary" onClick={() => this.hideDialog()}>Fechar</Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
         )
     }

@@ -21,6 +21,11 @@
 }
 
 .card-application .card-header
+.subtitle {
+    cursor: pointer;
+}
+
+.card-application .card-header
 .title {
     font-weight: 700;
     color: rgba(0, 0, 0, 0.65);
