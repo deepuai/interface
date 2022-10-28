@@ -15,14 +15,17 @@ class Fit extends React.Component {
             img/cachorro/cachorro1.jpg, img/cachorro/cachorro2.jpg,
             img/gato/gato1.jpg, img/gato/gato2.jpg.`
 
-        this.pathParams =  `${modelOrApplication.model_name.toLowerCase()}
-            ${modelOrApplication.version ? '/' + modelOrApplication.version.toLowerCase() : ''}/fit`
+        this.pathParams =  modelOrApplication.model_name.toLowerCase() + 
+            `${modelOrApplication.version ? '/' + modelOrApplication.version.toLowerCase() : ''}/fit`
         this.state = {
             form: {
                 file: {
                     type: 'zip_file',
-                    selected: null
-                } 
+                    selected: null,
+                },
+                name: null,
+                hashKey: null,
+                parentId: modelOrApplication['application_id']
             },
             loadingActivated: false,
             reponseFromRequest: null
@@ -73,6 +76,10 @@ class Fit extends React.Component {
             return
         }
         const formData = new FormData()
+        formData.append(
+            'parent_id',
+            this.state.form.parentId
+        )
         formData.append(
             'deepuai_app',
             this.state.form.name
