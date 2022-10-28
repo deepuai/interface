@@ -29,6 +29,16 @@ class Fit extends React.Component {
         }
     }
 
+    generateCode(str) {
+        let hash = 0
+        for (let i = 0, len = str.length; i < len; i++) {
+            let chr = str.charCodeAt(i)
+            hash = (hash << 5) - hash + chr
+            hash |= 0
+        }
+        return hash
+    }
+
     onChangeUploadFile = event => {
         this.setState({ 
             ...this.state,
@@ -49,7 +59,7 @@ class Fit extends React.Component {
             form: {
                 ...this.state.form,
                 name: event.target.value,
-                hashKey: event.target.value + '_versão XYZ'
+                hashKey: Math.abs(this.generateCode((new Date()).toISOString() + event.target.value))
             },
             reponseFromRequest: null,
         })
@@ -63,6 +73,14 @@ class Fit extends React.Component {
             return
         }
         const formData = new FormData()
+        formData.append(
+            'deepuai_app',
+            this.state.form.name
+        )
+        formData.append(
+            'version',
+            this.state.form.hashKey
+        )
         formData.append(
             this.state.form.file.type,
             this.state.form.file.selected,
