@@ -102,7 +102,7 @@ class ApplicationCard extends React.Component {
                                     <div>
                                         <img src='/assets/icons/accuracy.png' style={{height: '30px', width: '30px', marginRight: '5px'}} alt="img-icon"/> 
                                         <div>
-                                            <span>{ this.applicationAccuracy }% de Precisão*</span>
+                                            <span>{ (this.applicationAccuracy * 100).toFixed(2) }% de Precisão*</span>
                                             <span style={{display: 'block'}} className="text-muted">*Avaliado sob o subconjunto de teste do próprio conjunto de dados.</span>
                                         </div>
                                     </div>
