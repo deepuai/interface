@@ -1,0 +1,23 @@
+.page-datasets {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.page-datasets .datasets {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.page-datasets .datasets
+.card-dataset {
+    margin: 10px;
+}
+
+@media (max-width: 600px) {
+
+    .page-datasets .datasets {
+        display: grid;
+        grid-template-columns: auto;
+    }
+}
