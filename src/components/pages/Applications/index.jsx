@@ -59,9 +59,9 @@ class Applications extends React.Component {
         return (
             <div className='page-applications'>
                 <section className='applications'>
-                    {this.state.applications.map((application, id) => 
+                    {this.state.applications.map(application => 
                         <ApplicationCard 
-                            key={id}
+                            key={application.application_id}
                             applicationInfo={application}
                             callbackFit={() => this.showFitComponent(application)}
                             callbackPredict={() => this.showPredictComponent(application)}/>

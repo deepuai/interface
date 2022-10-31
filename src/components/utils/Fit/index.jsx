@@ -25,7 +25,8 @@ class Fit extends React.Component {
                 },
                 name: null,
                 hashKey: null,
-                parentId: modelOrApplication['application_id']
+                parentId: modelOrApplication['application_id'],
+                modelId: modelOrApplication['model_id']
             },
             loadingActivated: false,
             reponseFromRequest: null
@@ -87,6 +88,10 @@ class Fit extends React.Component {
         formData.append(
             'version',
             this.state.form.hashKey
+        )
+        formData.append(
+            'model_id',
+            this.state.form.modelId
         )
         formData.append(
             this.state.form.file.type,

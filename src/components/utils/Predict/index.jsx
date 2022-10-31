@@ -69,7 +69,7 @@ class Predict extends React.Component {
     constructor({ application }) {
         super()
         this.labelFileUploader = 'Envie uma imagem para o modelo realizar a predição.'
-        this.pathParams = `${application.application_name.toLowerCase()}/${application.version.toLowerCase()}/eval`
+        this.pathParams = `${application.model_name.toLowerCase()}/${application.version.toLowerCase()}/eval`
 
         this.state = {
             chart: {
