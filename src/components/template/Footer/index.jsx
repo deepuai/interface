@@ -1,5 +1,5 @@
 import './Footer.css'
-
+import React from 'react'
 const Footer = () => {
     return (
         <footer className="text-center text-black footer" style={{ backgroundColor: "#f1f1f1" }}>

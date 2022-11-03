@@ -56,6 +56,7 @@ class Applications extends React.Component {
     }
 
     render() {
+        console.log('renderign')
         return (
             <div className='page-applications'>
                 <section className='applications'>

@@ -1,8 +1,9 @@
-import { BrowserRouter } from 'react-router-dom';
-import './App.css';
-import Content from './components/template/Content';
-import Footer from './components/template/Footer';
-import Header from './components/template/Header';
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import "./App.css";
+import Content from "./components/template/Content";
+import Footer from "./components/template/Footer";
+import Header from "./components/template/Header";
 
 function App() {
   return (
