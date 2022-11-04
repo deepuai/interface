@@ -1,0 +1,6 @@
+.datasets-list {
+    display: flex;
+}
+.datasets-list .card-dataset {
+    margin: 24px;
+}

@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { Button, Modal } from 'react-bootstrap'
 import './Models.css'
-import Fit from '../../utils/Fit'
+import Fit2 from '../../utils/Fit2'
 import ModelCard from '../../utils/ModelCard'
 
 class Models extends React.Component {
@@ -65,7 +65,7 @@ class Models extends React.Component {
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Fit modelOrApplication={this.state.modelSelected}/>
+                        <Fit2 modelOrApplication={this.state.modelSelected}/>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="outline-secondary" onClick={() => this.hideDialog()}>Fechar</Button>

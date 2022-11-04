@@ -1,12 +1,11 @@
 import React from "react";
-import { Button, Modal, Row } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import Gallery from "../Gallery";
 import "./DatasetCard.css";
 
 class DatasetCard extends React.Component {
-  constructor({ infos }) {
+  constructor({ infos, isSelecting = false, callbackSelect = (_) => {} }) {
     super();
-    console.log(infos);
     this.id = infos.id;
     this.name = infos.name;
     this.application = infos.application;
@@ -15,6 +14,8 @@ class DatasetCard extends React.Component {
     this.sizeMB = (infos.size / 1e6).toFixed(2);
     this.images = infos.images;
     this.classes = infos.classes;
+    this.isSelecting = isSelecting;
+    this.callbackSelect = callbackSelect;
     this.state = {
       isGalleryComponentVisible: false,
     };
@@ -33,32 +34,18 @@ class DatasetCard extends React.Component {
       isGalleryComponentVisible: false,
     });
   }
-
   render() {
     return (
       <div className="card-dataset">
-        <div className="card-header">
-          <h3 className="title">{this.name}</h3>
-        </div>
         <div className="card-body">
-          <div className="dataset-preview">
-            {/* <Row>
-              <img
-                src={this.images[0]}
-                className="w-100 shadow-1-strong rounded mb-4"
-                alt="primeira imagem do conjunto de dados"
-              />
-              <img
-                src={this.images[1]}
-                className="w-100 shadow-1-strong rounded mb-4"
-                alt="segunda imagem do conjunto de dados"
-              />
-              <img
-                src={this.images[2]}
-                className="w-100 shadow-1-strong rounded mb-4"
-                alt="terceira imagem do conjunto de dados"
-              />
-            </Row> */}
+          <h5 className="dataset-name"> {this.name} </h5>
+          <div className="dataset-imgs">
+            {this.images
+              .sort(() => Math.random() - 0.5)
+              .slice(0, 12)
+              .map((imgURI) => (
+                <img src={imgURI} alt="Imagem" key={imgURI} />
+              ))}
           </div>
           <div className="dataset-infos">
             <div>
@@ -86,15 +73,29 @@ class DatasetCard extends React.Component {
               <span>{this.n_classes} Classes</span>
             </div>
           </div>
+          <div className="buttons">
+            <Button
+              variant="secondary"
+              onClick={() => this.showGalleryComponent()}
+            >
+              Visualizar
+            </Button>
+
+            {this.isSelecting ? (
+              <Button
+                variant="primary"
+                onClick={() => {
+                  this.callbackSelect(this.id);
+                }}
+              >
+                Escolher
+              </Button>
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
-        <div className="buttons">
-          <Button
-            variant="outline-secondary"
-            onClick={() => this.showGalleryComponent()}
-          >
-            Visualizar
-          </Button>
-        </div>
+
         <Modal
           size="lg"
           aria-labelledby="contained-modal-title-vcenter"

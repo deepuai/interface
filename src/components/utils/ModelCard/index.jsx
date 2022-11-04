@@ -52,7 +52,7 @@ class ModelCard extends React.Component {
                         <p className='paragraph text-muted'>{ this.autors }</p>
                     </div>
                 </div>
-                <div className='buttons' hidden={true}>
+                <div className='buttons'>
                     <Button variant="outline-secondary" onClick={this.callbackFit}>Treinar</Button>
                 </div>
             </div>

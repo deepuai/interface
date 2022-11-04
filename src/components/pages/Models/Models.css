@@ -6,19 +6,10 @@
 
 .page-models .models {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
 }
 
 .page-models .models
 .card-model {
     margin: 10px;
-}
-
-@media (max-width: 600px) {
-
-    .page-models .models {
-        display: grid;
-        grid-template-columns: auto;
-    }
-
 }
