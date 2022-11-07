@@ -7,7 +7,6 @@ import { Button, Form, Spinner, Modal } from "react-bootstrap";
 class Fit2 extends React.Component {
   constructor( {model} ) {
     super();
-    console.log('model',model)
     this.pathParams = "fit_new";
     // this.pathParams =
     //   modelOrApplication.model_name.toLowerCase() +
