@@ -65,7 +65,7 @@ class Models extends React.Component {
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Fit2 modelOrApplication={this.state.modelSelected}/>
+                        <Fit2 model={this.state.modelSelected}/>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="outline-secondary" onClick={() => this.hideDialog()}>Fechar</Button>

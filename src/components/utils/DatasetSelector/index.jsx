@@ -34,8 +34,8 @@ class DatasetSelector extends React.Component {
               infos={infos}
               key={infos.id}
               isSelecting={true}
-              callbackSelect={(datasetId) => {
-                this.callbackSelectDataset(datasetId);
+              callbackSelect={(datasetId, datasetName) => {
+                this.callbackSelectDataset(datasetId, datasetName);
               }}
             />
           ))}

@@ -5,35 +5,37 @@ import axios from "axios";
 import DatasetSelector from "../../utils/DatasetSelector";
 import { Button, Form, Spinner, Modal } from "react-bootstrap";
 class Fit2 extends React.Component {
-  constructor({ modelOrApplication }) {
+  constructor( {model} ) {
     super();
-    this.pathParams =
-      modelOrApplication.model_name.toLowerCase() +
-      `${
-        modelOrApplication.version
-          ? "/" + modelOrApplication.version.toLowerCase()
-          : ""
-      }/fit`;
+    console.log('model',model)
+    this.pathParams = "fit_new";
+    // this.pathParams =
+    //   modelOrApplication.model_name.toLowerCase() +
+    //   `${
+    //     modelOrApplication.version
+    //       ? "/" + modelOrApplication.version.toLowerCase()
+    //       : ""
+    //   }/fit`;
     this.state = {
       form: {
         name: null,
         hashKey: null,
         datasetId: null,
-        modelId: modelOrApplication["model_id"],
-        parentId: modelOrApplication["application_id"],
+        datasetName: null,
+        modelId: model.id,
       },
       loadingActivated: false,
       reponseFromRequest: null,
       isSelectDatasetVisible: false,
     };
   }
-  fetchingDbId(selectedDatasetId) {
-    console.log("dataset id:", selectedDatasetId);
+  fetchingDbId(selectedDatasetId, selectedDatasetName) {
     this.setState({
       ...this.state,
       form: {
         ...this.state.form,
         datasetId: selectedDatasetId,
+        datasetName: selectedDatasetName,
       },
       isSelectDatasetVisible: false,
     });
@@ -81,10 +83,9 @@ class Fit2 extends React.Component {
       return;
     }
     const formData = new FormData();
-    formData.append("parent_id", this.state.form.parentId);
-    formData.append("model_id", this.state.form.modelId);
     formData.append("dataset_id", this.state.form.datasetId);
-    formData.append("new_application_name", this.state.form.name);
+    formData.append("model_id", this.state.form.modelId);
+    formData.append("version", this.state.form.hashKey);
     this.setState({
       ...this.state,
       loadingActivated: true,
@@ -108,7 +109,6 @@ class Fit2 extends React.Component {
   };
 
   render() {
-    console.log(this.state.form.datasetId,this.state.form.datasetId ? "secondary" : "primary")
     return (
       <div className="fit-component">
         <Form onSubmit={this.handleSubmit}>
@@ -117,7 +117,9 @@ class Fit2 extends React.Component {
               variant={this.state.form.datasetId ? "secondary" : "primary"}
               onClick={() => this.showSelectDataset()}
             >
-              Escolher Dados
+              {this.state.form.datasetId
+                ? this.state.form.datasetName
+                : "Escolher Dados"}
             </Button>
           </div>
           <Form.Group className="mb-3" controlId="name">
@@ -177,8 +179,11 @@ class Fit2 extends React.Component {
           </Modal.Header>
           <Modal.Body>
             <DatasetSelector
-              callbackSelectDataset={(selectedDatasetId) => {
-                this.fetchingDbId(selectedDatasetId);
+              callbackSelectDataset={(
+                selectedDatasetId,
+                selectedDatasetName
+              ) => {
+                this.fetchingDbId(selectedDatasetId, selectedDatasetName);
               }}
             />
           </Modal.Body>

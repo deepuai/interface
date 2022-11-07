@@ -85,7 +85,7 @@ class DatasetCard extends React.Component {
               <Button
                 variant="primary"
                 onClick={() => {
-                  this.callbackSelect(this.id);
+                  this.callbackSelect(this.id, this.name);
                 }}
               >
                 Escolher
