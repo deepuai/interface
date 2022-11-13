@@ -1,8 +1,12 @@
 import React from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { useState } from 'react'
+import { Button, Col, Container, Row } from 'react-bootstrap'
 import './Gallery.css'
 
 const Gallery = ({ images }) => {
+
+    const [slicedImagesIntoLines, setSlicedImagesIntoLines] = useState([])
+    const [numberOfImgLinesShowing, setNumberOfImgLines] = useState(4)
 
     const sliceArray = (array, size) => {
         var id = 0
@@ -19,7 +23,7 @@ const Gallery = ({ images }) => {
 
     const lineOfImages = (images) => {
         return (
-            <Row>
+            <Row key={`${images[0]}-${images[1]}-${images[2]}`}>
                 {images[0] && <Col lg={4} md={12} className='mb-4 mb-lg-0'>
                     <img
                         src={images[0]}
@@ -46,13 +50,27 @@ const Gallery = ({ images }) => {
     }
 
     const createGalleryOfImages = () => {
-        const slicedImages = sliceArray(images, 3)
-        return slicedImages.map(images =>  lineOfImages(images))
+        const imgLines = []
+        if (!slicedImagesIntoLines.length) {
+            setSlicedImagesIntoLines(sliceArray(images, 3))
+        }
+        const __numberOfImgLines = numberOfImgLinesShowing < slicedImagesIntoLines.length ? numberOfImgLinesShowing : slicedImagesIntoLines.length
+        for (let i = 0; i < __numberOfImgLines; i++) {
+            imgLines.push(lineOfImages(slicedImagesIntoLines[i]))
+        }
+        return imgLines
+    }
+
+    const loadMoreImages = () => {
+        setNumberOfImgLines(numberOfImgLinesShowing + 2)
     }
 
     return (
         <Container className='gallery'>
             {createGalleryOfImages()}
+            <Button variant="outline-primary" onClick={loadMoreImages} hidden={slicedImagesIntoLines.length === numberOfImgLinesShowing}>
+                + Carregar mais
+            </Button>
         </Container>
     )
 }
