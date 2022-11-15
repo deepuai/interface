@@ -15,3 +15,15 @@
 span {
     margin-left: 10px;
 }
+
+.fit-component .btn-select-dataset {
+    margin-bottom: 10px;
+    margin-top: 33px
+}
+
+@media (max-width: 600px) {
+    .fit-component .btn-select-dataset {
+        margin-bottom: 20px;
+        margin-top: 47px
+    }
+}

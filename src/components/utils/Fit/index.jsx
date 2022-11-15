@@ -30,7 +30,7 @@ class Fit extends React.Component {
           selected: null,
         },
         name: null,
-        hashKey: null,
+        hashKey: '',
         parentId: modelOrApplication["application_id"],
         modelId: modelOrApplication["model_id"],
         datasetId: null,
@@ -38,7 +38,7 @@ class Fit extends React.Component {
       },
       loadingActivated: false,
       reponseFromRequest: null,
-      dataMode: "select",
+      dataMode: "upload",
       isSelectDatasetVisible: false,
     };
   }
@@ -66,7 +66,7 @@ class Fit extends React.Component {
     });
   }
   get datamode_bool() {
-    return this.state.dataMode == "select";
+    return this.state.dataMode === "upload";
   }
 
   generateCode(str) {
@@ -120,13 +120,13 @@ class Fit extends React.Component {
     formData.append("model_id", this.state.form.modelId);
     formData.append("version", this.state.form.hashKey);
     if (this.datamode_bool)
-      formData.append("dataset_id", this.state.form.datasetId);
-    else
       formData.append(
         this.state.form.file.type,
         this.state.form.file.selected,
         this.state.form.file.selected.name
-      );
+        );  
+    else
+      formData.append("dataset_id", this.state.form.datasetId);
     this.setState({
       ...this.state,
       loadingActivated: true,
@@ -155,27 +155,26 @@ class Fit extends React.Component {
       <div className="fit-component">
         <Form onSubmit={this.handleSubmit}>
           <Form.Check
+            checked={this.datamode_bool}
             type="switch"
             id="custom-switch"
             style={{ paddingTop: "8px", paddingBottom: "8px" }}
             label={
               this.datamode_bool
-                ? "Escolha seu Conjunto de Dados"
-                : "Envie seu Conjunto de Dados"
+                ? "Envie seu Conjunto de Dados"
+                : "Escolha seu Conjunto de Dados"
             }
-            value={this.datamode_bool}
             onChange={(event) => {
-              console.log(event.target);
               this.setState({
                 ...this.state,
-                dataMode: event.target.checked ? "select" : "upload",
+                dataMode: this.state.dataMode === "upload" ? "select" : "upload",
               });
             }}
           />
-          {this.state.dataMode == "select" ? (
+          {this.state.dataMode === "select" ? (
             <Button
+              className="btn-select-dataset"
               variant={this.state.form.datasetId ? "secondary" : "primary"}
-              style={{ marginBottom: "12px" }}
               onClick={() => this.showSelectDataset()}
             >
               {this.state.form.datasetId
@@ -234,7 +233,7 @@ class Fit extends React.Component {
           aria-labelledby="contained-modal-title-vcenter"
           centered
           show={this.state.isSelectDatasetVisible}
-          onHide={() => this.hideDialog()}
+          onHide={() => this.hideSelectDatabaseDialog()}
         >
           <Modal.Header closeButton>
             <Modal.Title
@@ -257,7 +256,7 @@ class Fit extends React.Component {
           <Modal.Footer>
             <Button
               variant="outline-secondary"
-              onClick={() => this.hideDialog()}
+              onClick={() => this.hideSelectDatabaseDialog()}
             >
               Fechar
             </Button>
