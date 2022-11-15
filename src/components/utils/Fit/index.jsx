@@ -65,7 +65,7 @@ class Fit extends React.Component {
       isSelectDatasetVisible: false,
     });
   }
-  get datamode_bool() {
+  get isUploadFileSelected() {
     return this.state.dataMode === "upload";
   }
 
@@ -119,7 +119,7 @@ class Fit extends React.Component {
     formData.append("deepuai_app", this.state.form.name);
     formData.append("model_id", this.state.form.modelId);
     formData.append("version", this.state.form.hashKey);
-    if (this.datamode_bool)
+    if (this.isUploadFileSelected)
       formData.append(
         this.state.form.file.type,
         this.state.form.file.selected,
@@ -131,7 +131,7 @@ class Fit extends React.Component {
       ...this.state,
       loadingActivated: true,
     });
-    const pathParams = this.datamode_bool ? "fit_new" : this.zip_path;
+    const pathParams = !this.isUploadFileSelected ? "fit_new" : this.zip_path;
     axios
       .post(`http://localhost:8000/${pathParams}`, formData)
       .then((response) => {
@@ -155,12 +155,12 @@ class Fit extends React.Component {
       <div className="fit-component">
         <Form onSubmit={this.handleSubmit}>
           <Form.Check
-            checked={this.datamode_bool}
+            checked={this.isUploadFileSelected}
             type="switch"
             id="custom-switch"
             style={{ paddingTop: "8px", paddingBottom: "8px" }}
             label={
-              this.datamode_bool
+              this.isUploadFileSelected
                 ? "Envie seu Conjunto de Dados"
                 : "Escolha seu Conjunto de Dados"
             }
