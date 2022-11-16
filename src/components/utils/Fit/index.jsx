@@ -8,13 +8,15 @@ import { Button, Form, Spinner, Modal } from "react-bootstrap";
 
 class Fit extends React.Component {
   constructor({ modelOrApplication }) {
+
     super();
-    this.zip_path =
+    console.log(modelOrApplication)
+    this.application_path =
       modelOrApplication.model_name.toLowerCase() +
       `${
         modelOrApplication.version
-          ? "/" + modelOrApplication.version.toLowerCase()
-          : ""
+          ? ('/'+modelOrApplication.version.toLowerCase())
+          : "/random"
       }/fit`;
     this.labelFileUploader =
       "Envie um arquivo zip com imagens para treinar essa rede.";
@@ -30,9 +32,9 @@ class Fit extends React.Component {
           selected: null,
         },
         name: null,
-        hashKey: '',
-        parentId: modelOrApplication["application_id"],
-        modelId: modelOrApplication["model_id"],
+        hashKey: "",
+        parentId: modelOrApplication["application_id"]??-1,
+        modelId: modelOrApplication["model_id"]??modelOrApplication["id"],
         datasetId: null,
         datasetName: null,
       },
@@ -59,7 +61,7 @@ class Fit extends React.Component {
       isSelectDatasetVisible: true,
     });
   }
-  hideSelectDatabaseDialog() {
+  hideSelectDataset() {
     this.setState({
       ...this.state,
       isSelectDatasetVisible: false,
@@ -117,21 +119,21 @@ class Fit extends React.Component {
     const formData = new FormData();
     formData.append("parent_id", this.state.form.parentId);
     formData.append("deepuai_app", this.state.form.name);
-    formData.append("model_id", this.state.form.modelId);
     formData.append("version", this.state.form.hashKey);
+    formData.append("model_id", this.state.form.modelId);
     if (this.isUploadFileSelected)
       formData.append(
         this.state.form.file.type,
         this.state.form.file.selected,
         this.state.form.file.selected.name
-        );  
-    else
-      formData.append("dataset_id", this.state.form.datasetId);
+      );
+    else formData.append("dataset_id", this.state.form.datasetId);
     this.setState({
       ...this.state,
       loadingActivated: true,
     });
-    const pathParams = !this.isUploadFileSelected ? "fit_new" : this.zip_path;
+    const pathParams =
+      this.application_path + (this.isUploadFileSelected ? "/file" : "/dataset");
     axios
       .post(`http://localhost:8000/${pathParams}`, formData)
       .then((response) => {
@@ -167,7 +169,8 @@ class Fit extends React.Component {
             onChange={(event) => {
               this.setState({
                 ...this.state,
-                dataMode: this.state.dataMode === "upload" ? "select" : "upload",
+                dataMode:
+                  this.state.dataMode === "upload" ? "select" : "upload",
               });
             }}
           />
@@ -233,7 +236,7 @@ class Fit extends React.Component {
           aria-labelledby="contained-modal-title-vcenter"
           centered
           show={this.state.isSelectDatasetVisible}
-          onHide={() => this.hideSelectDatabaseDialog()}
+          onHide={() => this.hideSelectDataset()}
         >
           <Modal.Header closeButton>
             <Modal.Title
@@ -256,7 +259,7 @@ class Fit extends React.Component {
           <Modal.Footer>
             <Button
               variant="outline-secondary"
-              onClick={() => this.hideSelectDatabaseDialog()}
+              onClick={() => this.hideSelectDataset()}
             >
               Fechar
             </Button>
