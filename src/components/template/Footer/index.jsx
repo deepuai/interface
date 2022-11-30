@@ -7,7 +7,7 @@ const Footer = () => {
                 <section>
                     <a
                         className="btn text-white btn-floating"
-                        href="https://github.com/deeplearnas"
+                        href="https://github.com/deepuai"
                         target="_blank"
                         rel="noreferrer"
                         role="button"

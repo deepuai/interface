@@ -5,6 +5,7 @@ import Home from "./components/pages/Home";
 import Models from "./components/pages/Models";
 import React from "react";
 import Queue from "./components/pages/Queue";
+import About from "./components/pages/About";
 const Routes = () => {
   return (
     <ReactRouters>
@@ -13,6 +14,7 @@ const Routes = () => {
       <Route element={<Models />} path="/community/models" exact />
       <Route element={<Datasets />} path="/community/datasets" exact />
       <Route element={<Queue />} path="/community/applications/queue" exact />
+      <Route element={<About />} path="/about" exact />
     </ReactRouters>
   );
 };

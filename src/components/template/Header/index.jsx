@@ -36,7 +36,7 @@ const Header = () => {
 
                     <NavDropdown title="Outros" id="nav-dropdown">
                       <NavDropdown.Item as={Link} to="/about">Sobre</NavDropdown.Item>
-                      <NavDropdown.Item href="https://github.com/deeplearnas" target="_blank">Repositório GitHub</NavDropdown.Item>
+                      <NavDropdown.Item href="https://github.com/deepuai" target="_blank">Repositório GitHub</NavDropdown.Item>
                     </NavDropdown>
 
                   </Nav>
